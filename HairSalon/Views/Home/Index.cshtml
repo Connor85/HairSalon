@@ -3,11 +3,10 @@
   <hr />
   <p>Welcome to Connor's Hair Salon. We offer an excellent varitey of hair stylists to fit your needs. If you want a trim, touch up or coloring we got you covered.</p>
   <hr />
-  <h2>Here are our wonderful styleists!</h2>
+  <h2>Here are our wonderful stylists!</h2>
   @foreach(var stylist in Model)
   {
       <h4>@stylist.GetName()</h4>
   }
-  <a href='/stylists'><button class='btn btn-info'>View Stylists</button></a>
   <a href='/stylists/new'><button class='btn btn-warning'>Add Stylist</button></a>
 </div>
