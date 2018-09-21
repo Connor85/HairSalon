@@ -45,6 +45,29 @@ namespace HairSalon.Models
             return _id;
         }
 
+        public void Save()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"INSERT INTO clients (name) VALUES (@name);";
+
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@name";
+            name.Value = this._name;
+            cmd.Parameters.Add(name);
+
+            cmd.ExecuteNonQuery();
+            _id = (int) cmd.LastInsertedId;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         public static List<Client> GetAll()
         {
             List<Client> allClients = new List<Client> {};
@@ -71,7 +94,6 @@ namespace HairSalon.Models
             return allClients;
         }
 
-
         public static void DeleteAll()
         {
             MySqlConnection conn = DB.Connection();
@@ -87,6 +109,37 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public static Client Find(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM clients WHERE id = (@searchId);";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = id;
+            cmd.Parameters.Add(searchId);
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            int ClientId = 0;
+            string ClientName = "";
+            while(rdr.Read())
+            {
+                ClientId = rdr.GetInt32(0);
+                ClientName = rdr.GetString(1);
+            }
+            Client newClient = new Client(ClientName, ClientId);
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return newClient;
         }
     }
 }
