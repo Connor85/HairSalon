@@ -1,14 +1,10 @@
 <div class='container'>
   <h1>Stylist</h1>
   <hr />
-  <h2>@Model["Stylist"].GetName() Category:</h2>
   <ul>
-    @foreach (var item in @Model["client"])
+    @foreach (var client in @Model["client"])
     {
-      <h4><a href='/stylists/@Model["stylist"].GetId()/stylist/@item.GetId()'>@client.Getname()</a>/h4>
+      <h4>@client.GetName()</h4>
     }
   </ul>
-  <a href='/categories/@Model["category"].GetId()/items/new'><button class='btn btn-danger'>Add Item</button></a>
-  <a href='/categories'><button class='btn btn-info'>View Categories</button></a>
-  <a href='/'><button class='btn btn-success'>Back Home</button></a>
 </div>

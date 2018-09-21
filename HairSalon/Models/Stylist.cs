@@ -149,7 +149,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM styleists WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@searchId);";
 
             MySqlParameter searchId = new MySqlParameter();
             searchId.ParameterName = "@searchId";
