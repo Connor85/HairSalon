@@ -7,11 +7,11 @@ namespace HairSalon.Controllers
 {
     public class ClientController : Controller
     {
-        [HttpGet("/stylists/{stylistId}/client/new")]
-        public ActionResult CreateForm(int stylistId)
+        [HttpGet("/stylists/{id}/client/new")]
+        public ActionResult CreateForm(int id)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
-            Client stylist = Client.Find(stylistId);
+            Stylist stylist = Stylist.Find(id);
             return View(stylist);
         }
     }

@@ -9,7 +9,7 @@
   }
   @foreach (var stylist in Model)
   {
-    <h3><a href='//stylist/@stylist.GetId()'>@stylist.GetName()</a></h3>
+    <h3><a href='/stylist/@stylist.GetId()'>@stylist.GetName()</a></h3>
   }
   <a href='/stylists/new'><button class='btn btn-warning'>Add Stylist</button></a>
   <a href='/'><button class='btn btn-success'>Back Home</button></a>

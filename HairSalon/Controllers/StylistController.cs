@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 
@@ -35,7 +34,7 @@ namespace HairSalon.Controllers
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist selectedStylist = Stylist.Find(id);
             List<Client> stylistClient = selectedStylist.GetClients();
-            model.Add("stylist", stylistClient);
+            model.Add("stylist", selectedStylist);
             model.Add("client", stylistClient);
             return View(model);
         }
@@ -47,9 +46,9 @@ namespace HairSalon.Controllers
             Stylist foundStylist = Stylist.Find(stylistId);
             Client newClient = new Client(clientName, stylistId);
             newClient.Save();
-            List<Client> StylistName = foundStylist.GetClients();
-            model.Add("Client", StylistName);
-            model.Add("Stylist", StylistName);
+            List<Client> stylistClient = foundStylist.GetClients();
+            model.Add("Client", stylistClient);
+            model.Add("Stylist", foundStylist);
             return View("Details", model);
         }
     }
