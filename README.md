@@ -10,11 +10,11 @@ _The web application allows users to see the various hair stylists and who their
 
 ## Spec
 
-| Spec | Input | Output |
-| :-------------     | :------------- | :------------- |
-| **Build a** | Input: "pizza" | Output: "pizza" |
-| **The program takes in a string of words.** | Input: "I like to eat pizza." | Output: "I like to eat pizza." |
-|**The program returns how many times the word is in the strig.**|"Input: Word: Pizza. String: I like to eat pizza."|Output: "1"|
+1. Make landing page.
+2. Make page that shows list of hair stylists.
+3. Add form where user can input new stylists.
+4. Add landing page for stylists.
+5. User can input clients that belong to the stylist.
 
 
 
