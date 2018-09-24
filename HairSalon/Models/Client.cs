@@ -9,12 +9,15 @@ namespace HairSalon.Models
     {
         private string _name;
         private int _id;
+        private int _stylistId;
 
-        public Client(string name, int id = 0)
+        public Client(string name, int stylistId = 0, int id = 0)
         {
             _name = name;
             _id = id;
+            _stylistId = stylistId;
         }
+
         public override bool Equals(System.Object otherClient)
         {
             if (!(otherClient is Client))
@@ -44,29 +47,39 @@ namespace HairSalon.Models
         {
             return _id;
         }
+        public int GetStylistId()
+        {
+            return _stylistId;
+        }
 
         public void Save()
-        {
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-
-            var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO clients (name) VALUES (@name);";
-
-            MySqlParameter name = new MySqlParameter();
-            name.ParameterName = "@name";
-            name.Value = this._name;
-            cmd.Parameters.Add(name);
-
-            cmd.ExecuteNonQuery();
-            _id = (int) cmd.LastInsertedId;
-
-            conn.Close();
-            if (conn != null)
             {
+              MySqlConnection conn = DB.Connection();
+              conn.Open();
+
+              MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+              cmd.CommandText = @"INSERT INTO clients (name, stylist_id) VALUES (@name, @stylist_id);";
+
+              MySqlParameter name = new MySqlParameter();
+              name.ParameterName = "@name";
+              name.Value = this._name;
+              cmd.Parameters.Add(name);
+
+              MySqlParameter stylistId = new MySqlParameter();
+              stylistId.ParameterName = "@stylist_id";
+              stylistId.Value = this._stylistId;
+              cmd.Parameters.Add(stylistId);
+
+              cmd.ExecuteNonQuery();
+              _id = (int) cmd.LastInsertedId;
+
+              conn.Close();
+              if (conn != null)
+              {
                 conn.Dispose();
+              }
             }
-        }
+
 
         public static List<Client> GetAll()
         {

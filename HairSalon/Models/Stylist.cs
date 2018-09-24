@@ -10,10 +10,10 @@ namespace HairSalon.Models
         private string _name;
         private int _id;
 
-        public Stylist(string name, int id = 0)
+        public Stylist(string name, int stylistId = 0)
         {
             _name = name;
-            _id = id;
+            _id = stylistId;
         }
         public override bool Equals(System.Object otherStylist)
         {
@@ -149,12 +149,12 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@searchId);";
+            cmd.CommandText = @"SELECT * FROM stylists WHERE id = (@stylistId);";
 
-            MySqlParameter searchId = new MySqlParameter();
-            searchId.ParameterName = "@searchId";
-            searchId.Value = id;
-            cmd.Parameters.Add(searchId);
+            MySqlParameter stylistId = new MySqlParameter();
+            stylistId.ParameterName = "@stylistId";
+            stylistId.Value = id;
+            cmd.Parameters.Add(stylistId);
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int StylistId = 0;
