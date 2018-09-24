@@ -1,8 +1,8 @@
 <div class='container'>
-  <h1>Stylist</h1>
+  <h1>Stylist @Model["stylist"].GetName()</h1>
   <hr />
   <ul>
-    @foreach (var client in @Model["client"])
+    @foreach (var client in Model["client"])
     {
       <h4>@client.GetName()</h4>
     }

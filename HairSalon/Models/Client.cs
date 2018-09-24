@@ -88,7 +88,7 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM stylists;";
+            cmd.CommandText = @"SELECT * FROM clients;";
 
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
