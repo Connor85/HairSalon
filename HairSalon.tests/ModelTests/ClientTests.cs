@@ -19,27 +19,35 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-       public void GetAll_ClientsEmptyAtFirst_0()
-       {
-         //Arrange, Act
-         int result = Client.GetAll().Count;
+        public void GetAll_ClientsEmptyAtFirst_0()
+        {
+            //Arrange, Act
+            int result = Client.GetAll().Count;
 
-         //Assert
-         Assert.AreEqual(0, result);
-       }
-       [TestMethod]
-public void Save_SavesToDatabase_Client()
-{
-    //Arrange
-    Client testClient = new Client("Mow the lawn", "", 1);
+            //Assert
+            Assert.AreEqual(0, result);
+        }
 
-    //Act
-    testClient.Save();
-    List<Client> result = Client.GetAll();
-    List<Client> testList = new List<Client>{testClient};
+        [TestMethod]
+        public void GetAll_DbStartsEmpty_0()
+        {
+            //Arrange
+            //Act
+            int result = Client.GetAll().Count;
 
-    //Assert
-    CollectionAssert.AreEqual(testList, result);
-    }
+            //Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Client()
+        {
+        // Arrange, Act
+        Client firstClient = new Client("Connor", 1);
+        Client secondClient = new Client("Connor", 1);
+
+        // Assert
+        Assert.AreEqual(firstClient, secondClient);
+        }
     }
 }

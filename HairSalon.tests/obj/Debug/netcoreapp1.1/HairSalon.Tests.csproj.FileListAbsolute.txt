@@ -12,3 +12,4 @@
 /Users/ConnorMcCarthy/Desktop/HairSalon.Solution/HairSalon.tests/bin/Debug/netcoreapp1.1/HairSalon.pdb
 /Users/ConnorMcCarthy/Desktop/HairSalon.Solution/HairSalon.tests/obj/Debug/netcoreapp1.1/HairSalon.Tests.dll
 /Users/ConnorMcCarthy/Desktop/HairSalon.Solution/HairSalon.tests/obj/Debug/netcoreapp1.1/HairSalon.Tests.pdb
+/Users/ConnorMcCarthy/Desktop/HairSalon.Solution/HairSalon.tests/obj/Debug/netcoreapp1.1/HairSalon.Tests.csprojResolveAssemblyReference.cache
