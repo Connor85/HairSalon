@@ -40,14 +40,41 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Client()
+        public void Equals_ReturnsTrueIfDescriptionsAreTheSame_True()
         {
-        // Arrange, Act
-        Client firstClient = new Client("Connor", 1);
-        Client secondClient = new Client("Connor", 1);
+            // Arrange, Act
+            Client firstClient = new Client("Connor", 1);
+            Client secondClient = new Client("Connor", 1);
 
-        // Assert
-        Assert.AreEqual(firstClient, secondClient);
+            // Assert
+            Assert.AreEqual(firstClient, secondClient);
+        }
+
+        // [TestMethod]
+        // public void Save_SavesToDatabase_Client()
+        // {
+        //     //Arrange
+        //   Client testClient = new Client("connor", 1);
+        //
+        //   //Act
+        //   testClient.Save();
+        //   List<Client> databaseList = Client.GetAll();
+        //
+        //   //Assert
+        //   Assert.AreEqual(testClient, databaseList[0]);
+        // }
+        [TestMethod]
+        public void Find_FindsClientInDatabase_Client()
+        {
+            //Arrange
+            Client testClient = new Client("connor");
+            testClient.Save();
+
+            //Act
+            Client foundClient = Client.Find(testClient.GetId());
+
+            //Assert
+            Assert.AreEqual(testClient, foundClient);
         }
     }
 }
