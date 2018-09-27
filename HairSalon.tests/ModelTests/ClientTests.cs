@@ -12,6 +12,7 @@ namespace HairSalon.Tests
         public void Dispose()
         {
             Client.DeleteAll();
+            Stylist.DeleteAll();
         }
         public ClientTests()
         {
@@ -50,19 +51,20 @@ namespace HairSalon.Tests
             Assert.AreEqual(firstClient, secondClient);
         }
 
-        // [TestMethod]
-        // public void Save_SavesToDatabase_Client()
-        // {
-        //     //Arrange
-        //   Client testClient = new Client("connor", 1);
-        //
-        //   //Act
-        //   testClient.Save();
-        //   List<Client> databaseList = Client.GetAll();
-        //
-        //   //Assert
-        //   Assert.AreEqual(testClient, databaseList[0]);
-        // }
+        [TestMethod]
+        public void Save_SavesToDatabase_Client()
+        {
+            //Arrange
+          Client testClient = new Client("connor", 1, 0);
+          testClient.Save();
+
+          //Act
+          List<Client> result = Client.GetAll();
+          List<Client> testlist = new List <Client> {testClient};
+
+          //Assert
+          CollectionAssert.AreEqual(testlist, result);
+        }
         [TestMethod]
         public void Find_FindsClientInDatabase_Client()
         {
