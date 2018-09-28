@@ -54,7 +54,7 @@ namespace HairSalon.Controllers
             return View("Details", model);
         }
         [HttpGet("/stylists/{id}/specialties/new")]
-        public ActionResult CreateCategoryForm()
+        public ActionResult CreateStylistForm()
         {
             return View("~/Views/Stylist/CreateForm.cshtml");
         }
@@ -65,6 +65,14 @@ namespace HairSalon.Controllers
             Stylist stylist = Stylist.Find(stylistId);
             Client client = Client.Find(Int32.Parse(Request.Form["client-id"]));
             client.AddClient(client);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("/stylists/{stylistId}/delete")]
+        public ActionResult DeleteStylist(int stylistId)
+        {
+            Stylist newStylist = Stylist.Find(stylistId);
+            newStylist.Delete();
             return RedirectToAction("Index");
         }
     }
