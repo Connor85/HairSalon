@@ -5,7 +5,7 @@
     <ul>
         @foreach (var client in Model["client"])
         {
-            <h4>@client.GetName()</h4>
+            <h4>@client.GetName() | <a href='/stylists/@Model["stylist"].GetId()/@Model["client"]/delete'>Delete</a></h4>
         }
     </ul>
     <a href='/stylists/@Model["stylist"].GetId()/client/new'><button class='btn btn-danger'>Add Client</button></a>
