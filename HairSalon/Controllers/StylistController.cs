@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
+using System;
 
 namespace HairSalon.Controllers
 {
@@ -51,6 +52,20 @@ namespace HairSalon.Controllers
             model.Add("client", stylistClient);
             model.Add("stylist", foundStylist);
             return View("Details", model);
+        }
+        [HttpGet("/stylists/{id}/clients/new")]
+        public ActionResult CreateCategoryForm()
+        {
+            return View("~/Views/Stylist/CreateForm.cshtml");
+        }
+
+        [HttpPost("/stylists/{stylistId}/clients/new")]
+        public ActionResult AddClient(int stylistId)
+        {
+            Stylist stylist = Stylist.Find(stylistId);
+            Client client = Client.Find(Int32.Parse(Request.Form["client-id"]));
+            client.AddClient(client);
+            return RedirectToAction("Index");
         }
     }
 }

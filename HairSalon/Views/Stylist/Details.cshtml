@@ -8,10 +8,10 @@
     }
   </ul>
   <h4>Add a cliet to this stylist:</h4>
-<form action='/clients/@Model["foundClient"].GetId()/clients/new' method='post'>
+<form action='/stylists/@Model["stylist"].GetId()/clients/new' method='post'>
   <label for='client-id'>Select a client</label>
   <select id='client-id' name='client-id' type='text'>
-    @foreach (var client in @Model["allClients"])
+    @foreach (var client in @Model["client"])
     {
       <option value='@client.GetId()'>@client.GetName()</option>
     }
