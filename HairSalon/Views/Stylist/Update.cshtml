@@ -1,0 +1,9 @@
+<h1>Stylist: @Model.GetName()</h1>
+<hr />
+<h2>Edit @Model.GetName()</h2>
+<form action='/stylist/@Model.GetId()/update' method="post">
+    <label for="newStylist">Name:</label>
+    <input name="newStylist" type="text" value="@Model.GetName()">
+    <button class="btn btn-danger" type="submit">Update</button>
+</form>
+<a href='/'><button class='btn btn-success'>Back Home</button></a>

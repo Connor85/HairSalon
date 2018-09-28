@@ -203,6 +203,33 @@ namespace HairSalon.Models
             }
         }
 
+        public void Edit(string newStylist)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE stylists SET name = @newName WHERE id = @searchId;";
+
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = _id;
+            cmd.Parameters.Add(searchId);
+
+            MySqlParameter stylist = new MySqlParameter();
+            stylist.ParameterName = "@newName";
+            stylist.Value = newStylist;
+            cmd.Parameters.Add(stylist);
+
+            cmd.ExecuteNonQuery();
+            _name= newStylist;
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         public static Stylist Find(int id)
         {
             MySqlConnection conn = DB.Connection();

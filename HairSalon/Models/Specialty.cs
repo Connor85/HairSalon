@@ -144,62 +144,40 @@ namespace HairSalon.Models
             return newSpecialty;
         }
 
-        // public void AddStylist(Stylist newStylist)
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"INSERT INTO stylists_clients (sty, client_id) VALUES (@stylistId, @clientId);";
-        //
-        //     MySqlParameter  = new MySqlParameter();
-        //     .ParameterDescription = "@stylistId";
-        //     .Value = newStylist.GetId();
-        //     cmd.Parameters.Add();
-        //
-        //     MySqlParameter client_id = new MySqlParameter();
-        //     client_id.ParameterDescription = "@clientId";
-        //     client_id.Value = _id;
-        //     cmd.Parameters.Add(client_id);
-        //
-        //     cmd.ExecuteNonQuery();
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        // }
-        // public List<Stylist> GetStylists()
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //     MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"SELECT stylists.* FROM clients
-        //     JOIN stylists_clients ON (client.id = stylists_clients.client_id)
-        //     JOIN stylists ON (stylists_clients. = stylists.id)
-        //     WHERE stylists.id = @stylistId;";
-        //
-        //     MySqlParameter stylistIdParameter = new MySqlParameter();
-        //     stylistIdParameter.ParameterDescription = "@stylistId";
-        //     stylistIdParameter.Value = _id;
-        //     cmd.Parameters.Add(stylistIdParameter);
-        //
-        //     MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-        //     List<Stylist> stylists = new List<Stylist>{};
-        //
-        //     while(rdr.Read())
-        //     {
-        //         int recipeId = rdr.GetInt32(0);
-        //         string recipeDescription = rdr.GetString(1);
-        //
-        //         Stylist newStylist = new Stylist(recipeDescription, recipeId);
-        //         stylists.Add(newStylist);
-        //     }
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        //     return stylists;
-        // }
+        public List<Stylist> GetStylists()
+        {
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
+          MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"SELECT stylists.* FROM specialties
+          JOIN specialties_stylists ON (specialties.id = specialties_stylists.specialty_id)
+          JOIN stylists ON (specialties_stylists.stylist_id = stylists.id)
+          WHERE specialties.id = @specialytId;";
+
+          MySqlParameter specialytIdParameter = new MySqlParameter();
+          specialytIdParameter.ParameterName = "@specialytId";
+          specialytIdParameter.Value = _id;
+          cmd.Parameters.Add(specialytIdParameter);
+
+          MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+          List<Stylist> specialty = new List<Stylist>{};
+
+          while(rdr.Read())
+          {
+            int id = rdr.GetInt32(0);
+            string hire = rdr.GetString(2);
+            string desctiption = rdr.GetString(1);
+
+            Stylist newStylist = new Stylist(desctiption, hire, id);
+            specialty.Add(newStylist);
+          }
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
+          return specialty;
+        }
+
     }
 }
