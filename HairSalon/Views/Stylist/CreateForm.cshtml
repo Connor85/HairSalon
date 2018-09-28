@@ -1,13 +1,19 @@
 <div class='container'>
-  <h1>To Do List</h1>
-  <hr />
-  <h2>Add a Stylist</h2>
-  <p>Add a Stylist here:</p>
-  <form action="/stylists" method="post">
-    <label for="StylistName">Stylist name</label>
-    <input id="StylistName" name="StylistName" type="text">
-    <button type="submit" class='btn btn-warning'>Add</button>
-  </form>
-  <a href='/stylists'><button class='btn btn-info'>View Stylists</button></a>
-  <a href='/'><button class='btn btn-success'>Back Home</button></a>
+    <h1>To Do List</h1>
+    <hr />
+    <h2>Add a Stylist</h2>
+    <p>Add a Stylist here:</p>
+    <div class="form-group">
+        <form action="/stylists" method="post">
+            <label for="StylistName">Stylist name</label>
+            <input id="StylistName" name="StylistName" type="text">
+        </div>
+        <div class="form-group">
+            <label for='hireDate'>Due Date</label>
+            <input id='hireDate' name='hireDate' type='date'>
+        </div>
+        <button type="submit" class='btn btn-warning'>Add</button>
+    </form>
+    <a href='/stylists'><button class='btn btn-info'>View Stylists</button></a>
+    <a href='/'><button class='btn btn-success'>Back Home</button></a>
 </div>

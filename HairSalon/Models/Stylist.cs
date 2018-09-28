@@ -8,11 +8,13 @@ namespace HairSalon.Models
     public class Stylist
     {
         private string _name;
+        private string _hireDate;
         private int _id;
 
-        public Stylist(string name, int stylistId = 0)
+        public Stylist(string name, string hireDate, int stylistId = 0)
         {
             _name = name;
+            _hireDate = hireDate;
             _id = stylistId;
 
         }
@@ -25,20 +27,26 @@ namespace HairSalon.Models
             else
             {
                 Stylist newStylist = (Stylist) otherStylist;
-                bool areIdsEqual = (this.GetId() == newStylist.GetId());
                 bool areNamesEqual = (this.GetName() == newStylist.GetName());
-                return (areIdsEqual && areNamesEqual);
+                bool areHireDateEqual = (this.GetHireDate() == newStylist.GetHireDate());
+                return (areNamesEqual && areHireDateEqual);
             }
         }
 
         public override int GetHashCode()
         {
-            return this.GetId().GetHashCode();
+            string allHash = this.GetName() + this.GetHireDate();
+            return allHash.GetHashCode();
         }
 
         public string GetName()
         {
             return _name;
+        }
+
+        public string GetHireDate()
+        {
+            return _hireDate;
         }
 
         public int GetId()
@@ -52,12 +60,17 @@ namespace HairSalon.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists (name) VALUES (@name);";
+            cmd.CommandText = @"INSERT INTO stylists (name, hire_date) VALUES (@name, @hireDate);";
 
             MySqlParameter name = new MySqlParameter();
             name.ParameterName = "@name";
             name.Value = this._name;
             cmd.Parameters.Add(name);
+
+            MySqlParameter hireDate = new MySqlParameter();
+            hireDate.ParameterName = "@hireDate";
+            hireDate.Value = this._hireDate;
+            cmd.Parameters.Add(hireDate);
 
             cmd.ExecuteNonQuery();
             _id = (int) cmd.LastInsertedId;
@@ -83,7 +96,8 @@ namespace HairSalon.Models
             {
                 int StylistId = rdr.GetInt32(0);
                 string StylistName = rdr.GetString(1);
-                Stylist newStylist = new Stylist(StylistName, StylistId);
+                string hireDate = rdr.GetString(2);
+                Stylist newStylist = new Stylist(StylistName, hireDate, StylistId);
                 allStylists.Add(newStylist);
             }
 
@@ -129,6 +143,32 @@ namespace HairSalon.Models
             return allClients;
         }
 
+        public static List<Client> GetAllClients()
+        {
+            List<Client> allClients = new List<Client> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM clients;";
+
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int ClientId = rdr.GetInt32(0);
+                string ClientName = rdr.GetString(1);
+                Client newClient = new Client(ClientName, ClientId);
+                allClients.Add(newClient);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return allClients;
+        }
+
         public static void DeleteAll()
         {
             MySqlConnection conn = DB.Connection();
@@ -162,12 +202,14 @@ namespace HairSalon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int StylistId = 0;
             string StylistName = "";
+            string HireDate = "";
             while(rdr.Read())
             {
                 StylistId = rdr.GetInt32(0);
                 StylistName = rdr.GetString(1);
+                HireDate = rdr.GetString(2);
             }
-            Stylist newStylist = new Stylist(StylistName, StylistId);
+            Stylist newStylist = new Stylist(StylistName, HireDate, StylistId);
 
             conn.Close();
             if (conn != null)
@@ -223,8 +265,9 @@ namespace HairSalon.Models
              {
                  int recipeId = rdr.GetInt32(0);
                  string recipeName = rdr.GetString(1);
+                 string hireDate = rdr.GetString(2);
 
-                 Stylist newStylist = new Stylist(recipeName, recipeId);
+                 Stylist newStylist = new Stylist(recipeName, hireDate, recipeId);
                  stylists.Add(newStylist);
              }
              conn.Close();

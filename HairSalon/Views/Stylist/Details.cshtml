@@ -1,23 +1,13 @@
 <div class='container'>
-  <h1>Stylist @Model["stylist"].GetName()</h1>
-  <hr />
-  <ul>
-    @foreach (var client in Model["client"])
-    {
-      <h4>@client.GetName()</h4>
-    }
-  </ul>
-  <h4>Add a cliet to this stylist:</h4>
-<form action='/stylists/@Model["stylist"].GetId()/clients/new' method='post'>
-  <label for='client-id'>Select a client</label>
-  <select id='client-id' name='client-id' type='text'>
-    @foreach (var client in @Model["client"])
-    {
-      <option value='@client.GetId()'>@client.GetName()</option>
-    }
-  </select>
-  <button type='submit'>Add</button>
-</form>
-  <a href='/stylists/@Model["stylist"].GetId()/client/new'><button class='btn btn-danger'>Add Client</button></a>
-  <a href='/stylists'><button class='btn btn-info'>Back To Stylists</button></a>
+    <h1>Stylist @Model["stylist"].GetName()</h1>
+    <h3>Hire Date: @Model["stylist"].GetHireDate()<h3>
+    <hr />
+    <ul>
+        @foreach (var client in Model["client"])
+        {
+            <h4>@client.GetName()</h4>
+        }
+    </ul>
+    <a href='/stylists/@Model["stylist"].GetId()/client/new'><button class='btn btn-danger'>Add Client</button></a>
+    <a href='/stylists'><button class='btn btn-info'>Back To Stylists</button></a>
 </div>

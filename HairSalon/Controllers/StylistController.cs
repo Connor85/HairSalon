@@ -21,9 +21,9 @@ namespace HairSalon.Controllers
         }
 
         [HttpPost("/stylists")]
-        public ActionResult Create(string StylistName)
+        public ActionResult Create(string StylistName, string hireDate)
         {
-            Stylist newStylist = new Stylist(StylistName);
+            Stylist newStylist = new Stylist(StylistName, hireDate);
             newStylist.Save();
             List<Stylist> allStylists = Stylist.GetAll();
             return View ("Index", allStylists);
@@ -53,13 +53,13 @@ namespace HairSalon.Controllers
             model.Add("stylist", foundStylist);
             return View("Details", model);
         }
-        [HttpGet("/stylists/{id}/clients/new")]
+        [HttpGet("/stylists/{id}/specialties/new")]
         public ActionResult CreateCategoryForm()
         {
             return View("~/Views/Stylist/CreateForm.cshtml");
         }
 
-        [HttpPost("/stylists/{stylistId}/clients/new")]
+        [HttpPost("/stylists/{stylistId}/specialties/new")]
         public ActionResult AddClient(int stylistId)
         {
             Stylist stylist = Stylist.Find(stylistId);

@@ -19,13 +19,12 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        [HttpPost("/specialties")]
-        public ActionResult Create(string SpecialtyName)
+        [HttpPost("/specialties/details")]
+        public ActionResult Create()
         {
-            Specialty newSpecialty = new Specialty(SpecialtyName);
+            Specialty newSpecialty = new Specialty(Request.Form["SpecialtyName"]);
             newSpecialty.Save();
-            List<Specialty> allSpecialtys = Specialty.GetAll();
-            return View ("Index", allSpecialtys);
+            return RedirectToAction("Index");
         }
 
         // [HttpGet("/specialties/{id}")]
@@ -34,8 +33,8 @@ namespace HairSalon.Controllers
         //     Dictionary<string, object> model = new Dictionary<string, object>();
         //     Specialty selectedSpecialty = Specialty.Find(id);
         //     List<Stylist> stylistStylist = selectedStylist.GetName();
-        //     model.Add("stylist", selectedStylist);
-        //     model.Add("specialty", stylistSpecialty);
+        //     model.Add("selectedStylistylist", selectedStylist);
+        //     model.Add("stylist", stylistSpecialty);
         //     return View(model);
         // }
     }
