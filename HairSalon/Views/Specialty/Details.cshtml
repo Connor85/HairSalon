@@ -1,10 +1,13 @@
-<h1>@Model.GetDescription()</h1>
-
-@if (@Model.Count == 0)
-{
-  <h4>No specialties have been added yet!</h4>
-}
-@foreach (var specialties in Model)
-{
-  <h3><a href='/specialties/@specialties.GetId()'>@specialties.GetName()</a></h3>
-}
+<div class='container'>
+    <h1>Specialty</h1>
+    <hr />
+    <ul>
+        @foreach (var stylist in Model["specialty"])
+        {
+            <h4>@stylist.GetName()</h4>
+        }
+    </ul>
+    <a href='/stylists/@Model["stylist"].GetId()/client/new'><button class='btn btn-danger'>Add Client</button></a>
+    <a href='/specialties/'><button>Back to specialties</button></a>
+    <a href='/stylists'><button class='btn btn-info'>Stylists</button></a>
+</div>
