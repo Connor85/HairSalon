@@ -179,5 +179,29 @@ namespace HairSalon.Models
           return specialty;
         }
 
+        public void AddStylist(Stylist newStylist)
+            {
+                MySqlConnection conn = DB.Connection();
+                conn.Open();
+                var cmd = conn.CreateCommand() as MySqlCommand;
+                cmd.CommandText = @"INSERT INTO stylists_clients (specialty_id, stylist_id) VALUES (@specialtyId, @stylistId);";
+
+                MySqlParameter specialtyId = new MySqlParameter();
+                specialtyId.ParameterName = "@specialtyId";
+                specialtyId.Value = _id;
+                cmd.Parameters.Add(specialtyId);
+
+                MySqlParameter stylistId = new MySqlParameter();
+                stylistId.ParameterName = "@stylistId";
+                stylistId.Value = newStylist.GetId();
+                cmd.Parameters.Add(stylistId);
+
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                if (conn != null)
+                {
+                  conn.Dispose();
+                }
+            }
     }
 }

@@ -1,13 +1,26 @@
 <div class='container'>
-    <h1>Specialty</h1>
+    <h1>Specialty: @Model["selectedSpecialty"].GetDescription()</h1>
     <hr />
-    <ul>
-        @foreach (var stylist in Model["specialty"])
-        {
-            <h4>@stylist.GetName()</h4>
-        }
-    </ul>
-    <a href='/stylists/@Model["stylist"].GetId()/client/new'><button class='btn btn-danger'>Add Client</button></a>
-    <a href='/specialties/'><button>Back to specialties</button></a>
-    <a href='/stylists'><button class='btn btn-info'>Stylists</button></a>
-</div>
+    <h3>Stylists with this specialty:
+        <ul>
+            @foreach (var stylist in Model["specialtyStylists"])
+            {
+                <h5>@stylist.GetName()</h5>
+            }
+        </ul>
+        <hr />
+        <h4>Add stylists to this specialty:
+            <form action='/specialties/@Model["selectedSpecialty"].GetId()/stylists/new' method='post'>
+                <label for='stylist-id'>Add a Stylist</label>
+                <select id='stylist-id' name='stylist-id' type='text'>
+                    @foreach (var stylist in Model["allStylists"])
+                    {
+                        <option value='@stylist.GetId()'>@stylist.GetName()</option>
+                    }
+                </select>
+                <button type='submit'>Add</button>
+            </form>
+            <hr />
+            <a href='/specialties/'><button>Back to specialties</button></a>
+            <a href='/stylists'><button class='btn btn-info'>Stylists</button></a>
+        </div>
