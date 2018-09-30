@@ -25,14 +25,14 @@ namespace HairSalon.Controllers
         {
             Specialty newSpecialty = new Specialty(Request.Form["SpecialtyName"]);
             newSpecialty.Save();
-            return RedirectToAction("details");
+            return RedirectToAction("Index");
         }
 
-        [HttpGet("/specialties/{id}")]
-        public ActionResult Details(int id)
+        [HttpGet("/specialties/{specialytIdid}")]
+        public ActionResult Details(int specialytId)
         {
           Dictionary<string, object> model = new Dictionary <string, object>();
-          Specialty selectedSpecialty = Specialty.Find(id);
+          Specialty selectedSpecialty = Specialty.Find(specialytId);
           List<Stylist> specialtyStylists = selectedSpecialty.GetStylists();
           List<Stylist> allStylists = Stylist.GetAll();
           model.Add("selectedSpecialty", selectedSpecialty);
@@ -47,7 +47,7 @@ namespace HairSalon.Controllers
           Specialty foundSpecialty = Specialty.Find(specialtyId);
           Stylist foundStylist = Stylist.Find(stylistId);
           foundSpecialty.AddStylist(foundStylist);
-          return RedirectToAction("Details");
+          return RedirectToAction("Index");
         }
     }
 }

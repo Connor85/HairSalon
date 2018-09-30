@@ -9,7 +9,7 @@
   }
   @foreach (var specialty in Model)
   {
-    <h3><a href='/specialties/specialty["selectedSpecialty"].GetId()'>@specialty.GetDescription()</a></h3>
+    <h3><a href='/specialties/@specialty.GetId()'>@specialty.GetDescription()</a></h3>
   }
   <a href='/specialties/new'><button class='btn btn-warning'>Add Specialty</button></a>
   <a href='/stylists/new'><button class='btn btn-warning'>Add Stylist</button></a>
