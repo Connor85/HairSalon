@@ -203,31 +203,32 @@ namespace HairSalon.Models
             }
         }
 
-        public void Edit(string newStylist)
+        public void Edit(string stylistName)
         {
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"UPDATE stylists SET name = @newName WHERE id = @searchId;";
+          MySqlConnection conn = DB.Connection();
+          conn.Open();
 
-            MySqlParameter searchId = new MySqlParameter();
-            searchId.ParameterName = "@searchId";
-            searchId.Value = _id;
-            cmd.Parameters.Add(searchId);
+          var cmd = conn.CreateCommand() as MySqlCommand;
+          cmd.CommandText = @"UPDATE stylists SET name = @newName WHERE id = @searchId;";
 
-            MySqlParameter stylist = new MySqlParameter();
-            stylist.ParameterName = "@newName";
-            stylist.Value = newStylist;
-            cmd.Parameters.Add(stylist);
+          MySqlParameter searchId = new MySqlParameter();
+          searchId.ParameterName = "@searchId";
+          searchId.Value = this._id;
+          cmd.Parameters.Add(searchId);
+
+          MySqlParameter newName = new MySqlParameter();
+            newName.ParameterName = "@newName";
+            newName.Value = stylistName;
+            cmd.Parameters.Add(newName);
 
             cmd.ExecuteNonQuery();
-            this._name= newStylist;
+            _name = stylistName;
 
-            conn.Close();
-            if (conn != null)
-            {
-                conn.Dispose();
-            }
+          conn.Close();
+          if (conn != null)
+          {
+            conn.Dispose();
+          }
         }
 
         public static Stylist Find(int id)
