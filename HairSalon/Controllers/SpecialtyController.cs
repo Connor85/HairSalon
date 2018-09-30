@@ -28,7 +28,7 @@ namespace HairSalon.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet("/specialties/{specialytIdid}")]
+        [HttpGet("/specialties/{specialytId}")]
         public ActionResult Details(int specialytId)
         {
           Dictionary<string, object> model = new Dictionary <string, object>();
