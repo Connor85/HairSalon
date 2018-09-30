@@ -348,7 +348,7 @@ namespace HairSalon.Models
             }
         }
 
-        public List<Specialty> GetSpecialtys()
+        public List<Specialty> GetSpecialties()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
