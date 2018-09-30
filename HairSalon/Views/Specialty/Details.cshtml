@@ -11,8 +11,8 @@
         <hr />
         <h4>Add stylists to this specialty:
             <form action='/specialties/@Model["selectedSpecialty"].GetId()/stylists/new' method='post'>
-                <label for='stylist-id'>Add a Stylist</label>
-                <select id='stylist-id' name='stylist-id' type='text'>
+                <label for='stylistId'>Add a Stylist</label>
+                <select id='stylistId' name='stylistId' type='text'>
                     @foreach (var stylist in Model["allStylists"])
                     {
                         <option value='@stylist.GetId()'>@stylist.GetName()</option>
