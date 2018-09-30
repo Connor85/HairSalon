@@ -25,7 +25,7 @@ namespace HairSalon.Controllers
         {
             Specialty newSpecialty = new Specialty(Request.Form["SpecialtyName"]);
             newSpecialty.Save();
-            return RedirectToAction("Index");
+            return RedirectToAction("details");
         }
 
         [HttpGet("/specialties/{id}")]

@@ -95,7 +95,7 @@ namespace HairSalon.Controllers
         {
           Stylist newStylist = Stylist.Find(stylistId);
           newStylist.Edit(stylistName);
-          return RedirectToAction("Details", new {StylistId = newStylist.GetId()});
+          return RedirectToAction("Index");
         }
 
     }
