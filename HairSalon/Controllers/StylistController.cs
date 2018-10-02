@@ -57,7 +57,7 @@ namespace HairSalon.Controllers
             List<Client> stylistClient = foundStylist.GetClients();
             model.Add("client", stylistClient);
             model.Add("stylist", foundStylist);
-            return View("Details", model);
+            return RedirectToAction("Details", new{stylistId = foundStylist.GetId()});
         }
 
         [HttpGet("/stylists/{id}/specialties/new")]
@@ -70,9 +70,9 @@ namespace HairSalon.Controllers
         public ActionResult AddClient(int stylistId)
         {
             Stylist stylist = Stylist.Find(stylistId);
-            Client client = Client.Find(Int32.Parse(Request.Form["client-id"]));
+            Client client = Client.Find(Int32.Parse(Request.Form["specialtyId"]));
             client.AddClient(client);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details");
         }
 
         [HttpGet("/stylists/{stylistId}/delete")]
