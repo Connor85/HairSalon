@@ -59,6 +59,7 @@ namespace HairSalon.Controllers
             model.Add("stylist", foundStylist);
             return View("Details", model);
         }
+
         [HttpGet("/stylists/{id}/specialties/new")]
         public ActionResult CreateStylistForm()
         {
