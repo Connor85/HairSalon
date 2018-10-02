@@ -6,7 +6,7 @@
 }
 @foreach (var client in Model)
 {
-  <h3>@client.GetName()</h3>
+  <h3>@client.GetName() | <a href="/clients/@client.GetId()/update">Edit</a></h3>
 }
 <a href='/stylists/new'><button class='btn btn-warning'>Add Stylist</button></a>
 <a href="/clients/delete/all"><button>Delete All Clients</button></a>

@@ -157,12 +157,14 @@ namespace HairSalon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int ClientId = 0;
             string ClientName = "";
+            int stylistId = 0;
             while(rdr.Read())
             {
                 ClientId = rdr.GetInt32(0);
                 ClientName = rdr.GetString(1);
+                stylistId = rdr.GetInt32(2);
             }
-            Client newClient = new Client(ClientName, ClientId);
+            Client newClient = new Client(ClientName, stylistId, ClientId);
 
             conn.Close();
             if (conn != null)
@@ -182,7 +184,7 @@ namespace HairSalon.Models
 
           MySqlParameter searchId = new MySqlParameter();
           searchId.ParameterName = "@searchId";
-          searchId.Value = this._id;
+          searchId.Value = _id;
           cmd.Parameters.Add(searchId);
 
           MySqlParameter newName = new MySqlParameter();
@@ -199,6 +201,7 @@ namespace HairSalon.Models
             conn.Dispose();
           }
         }
+
         public void AddClient(Client newClient)
         {
             MySqlConnection conn = DB.Connection();

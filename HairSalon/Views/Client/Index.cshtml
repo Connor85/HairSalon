@@ -1,1 +1,8 @@
+<h1>All CLients</h1>
 
+@foreach(var clients in Model["allClients"])
+{
+    <ul>
+        <li>@clients.GetName()</li>
+    </ul>
+}

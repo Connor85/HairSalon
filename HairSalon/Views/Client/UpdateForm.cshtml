@@ -3,7 +3,7 @@
 <h2>Edit @Model.GetName()</h2>
 <form action="/clients/@Model.GetId()/update" method="post">
   <div class="form-group">
-    <label for="clientName">Stylist Name:</label>
+    <label for="clientName">Client Name:</label>
     <input name="clientName" type="text" value="@Model.GetName()">
   </div>
   <button class="btn btn-info" type="submit">Update</button>
