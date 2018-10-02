@@ -18,7 +18,7 @@
     </ul>
 
     <h4>Add specialty to this stylist:
-        <form action='/specialties/@Model["selectedStylist"].GetId()/specialties/new' method='post'>
+        <form action='/stylist/@Model["selectedStylist"].GetId()/specialty/new' method='post'>
             <label for='specialtyId'>Add a specialty</label>
             <select id='specialtyId' name='specialtyId' type='text'>
                 @foreach (var specialty in Model["allSpecialties"])
