@@ -264,30 +264,6 @@ namespace HairSalon.Models
             return newStylist;
         }
 
-        public void AddClient(Client newClient)
-        {
-            MySqlConnection conn = DB.Connection();
-            conn.Open();
-            var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO stylists_clients (stylist_id, client_id) VALUES (@stylistId, @clientId);";
-
-            MySqlParameter stylist_id = new MySqlParameter();
-            stylist_id.ParameterName = "@stylistId";
-            stylist_id.Value = newClient.GetId();
-            cmd.Parameters.Add(stylist_id);
-
-            MySqlParameter client_id = new MySqlParameter();
-            client_id.ParameterName = "@clientId";
-            client_id.Value = _id;
-            cmd.Parameters.Add(client_id);
-
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            if (conn != null)
-            {
-                conn.Dispose();
-            }
-        }
         public List<Stylist> GetStylists()
         {
             MySqlConnection conn = DB.Connection();

@@ -6,7 +6,7 @@
     <ul>
         @foreach (var client in @Model["stylistClients"])
         {
-            <h4><a href='/clients/@client.GetId()'>@client.GetName()</a> | <a href="/clients/@client.GetId()/update">Edit</a></h4>
+            <h4><a href='/clients/@client.GetId()'>@client.GetName()</a> | <a href="/clients/@client.GetId()/update">Edit</a> | <a href=/stylists/@client.GetId()/delete>Delete</a></h4>
         }
     </ul>
     <h3>Specialties:</h3>
