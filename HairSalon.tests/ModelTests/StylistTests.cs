@@ -51,20 +51,20 @@ namespace HairSalon.Tests
             Assert.AreEqual(firstStylist, testList[0]);
         }
 
-        // [TestMethod]
-        // public void GetClients_GetsStylistsClients_True()
-        // {
-        //     //Arrange
-        //     Stylist firstStylist = new Stylist("connor", " ", 1);
-        //     firstStylist.Save();
-        //     Client firstClient = new Client("Mitch", 1, 1);
-        //     firstClient.Save();
-        //     //Act
-        //     List<Client> clientList = firstStylist.GetClients();
-        //     List<Client> result = new List<Client> {clientList};
-        //     //Assert
-        //     Assert.AreEqual(result, clientList);
-        // }
+        [TestMethod]
+        public void GetClients_GetsStylistsClients_True()
+        {
+            //Arrange
+            Stylist firstStylist = new Stylist("connor", " ");
+            firstStylist.Save();
+            Client firstClient = new Client("Mitch", firstStylist.GetId());
+            firstClient.Save();
+            //Act
+            List<Client> clientList = firstStylist.GetClients();
+            List<Client> result = new List<Client> {firstClient};
+            //Assert
+            CollectionAssert.AreEqual(result, clientList);
+        }
 
         [TestMethod]
         public void GetSpecialties_SameSpecialtys_True()
