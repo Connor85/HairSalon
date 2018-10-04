@@ -7,7 +7,7 @@ using HairSalon.Models;
 namespace HairSalon.Tests
 {
   [TestClass]
-  public class SpecialtyControllerTest
+  public class StylistControllerTest
   {
 
     [TestMethod]
@@ -41,10 +41,10 @@ namespace HairSalon.Tests
     {
       //Arrange
       SpecialtyController controller = new SpecialtyController();
-      Client testClient = new Client("connor");
+      Stylist testStylist = new Stylist("connor", "", 1);
 
       //Act
-      ActionResult indexView = controller.Details(testClient.GetId());
+      ActionResult indexView = controller.Details(testStylist.GetId());
 
       //Assert
       Assert.IsInstanceOfType(indexView, typeof(ViewResult));
