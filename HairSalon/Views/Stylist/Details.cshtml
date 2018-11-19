@@ -1,5 +1,9 @@
+@{
+  Layout = "_Layout";
+}
+
 <div class='container'>
-    <h1>Stylist: @Model["selectedStylist"].GetName()</h1>
+    <h1>@Model["selectedStylist"].GetName()</h1>
     <h3>Hire Date: @Model["selectedStylist"].GetHireDate()<h3>
     <hr />
     <h3>Clients:</h3>
@@ -16,21 +20,14 @@
             <h4>@specialty.GetDescription()</h4>
         }
     </ul>
-
-    <h4>Add specialty to this stylist:
-        <form action='/stylist/@Model["selectedStylist"].GetId()/specialty/new' method='post'>
+        <form class="form-group" action='/stylist/@Model["selectedStylist"].GetId()/specialty/new' method='post'>
             <label for='specialtyId'>Add a specialty</label>
-            <select id='specialtyId' name='specialtyId' type='text'>
+            <select multiple class="form-control" id='specialtyId' name='specialtyId' type='text'>
                 @foreach (var specialty in Model["allSpecialties"])
                 {
                     <option value='@specialty.GetId()'>@specialty.GetDescription()</option>
                 }
             </select>
-            <button type='submit'>Add</button>
+            <button class="btn btn-warning"type='submit'>Add</button>
         </form>
-    <a href='/stylists/@Model["selectedStylist"].GetId()/client/new'><button class='btn btn-danger'>Add Client</button></a>
-    <a href='/stylists/@Model["selectedStylist"].GetId()/update'><button>Edit</button></a>
-    <a href='/stylists'><button class='btn btn-info'>Back To Stylists</button></a>
-    <a href='/stylists/@Model["selectedStylist"].GetId()/delete'><button>Delete</button></a>
-    <a href="/"><button>Home</button></a>
 </div>

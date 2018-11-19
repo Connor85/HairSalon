@@ -1,3 +1,7 @@
+@{
+  Layout = "_Layout";
+}
+
 <div class='container'>
     <h1>Specialty: @Model["selectedSpecialty"].GetDescription()</h1>
     <hr />
@@ -20,8 +24,5 @@
                 </select>
                 <button type='submit'>Add</button>
             </form>
-            <hr />
-            <a href='/specialties/'><button>Back to specialties</button></a>
-            <a href='/stylists'><button class='btn btn-info'>Stylists</button></a>
-            <a href="/"><button>Home</button></a>
+        <hr />
         </div>

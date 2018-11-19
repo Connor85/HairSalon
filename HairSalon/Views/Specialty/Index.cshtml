@@ -1,8 +1,11 @@
+@{
+  Layout = "_Layout";
+}
+
 <div class='container'>
-  <h1>Hair Specialty</h1>
+  <h1>Specialty</h1>
   <hr />
 
-  <h2>Specialty</h2>
   @if (@Model.Count == 0)
   {
     <h4>No specialties have been added yet!</h4>
@@ -12,5 +15,4 @@
     <h3><a href='/specialties/@specialty.GetId()'>@specialty.GetDescription()</a></h3>
   }
   <a href='/specialties/new'><button class='btn btn-warning'>Add Specialty</button></a>
-  <a href='/stylists/new'><button class='btn btn-warning'>Add Stylist</button></a>
-  <a href='/'><button class='btn btn-success'>Back Home</button></a>
+

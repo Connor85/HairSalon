@@ -1,14 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
 <div class="container">
-  <h1>Add a client</h1>
+  <h1>Add a Specialty</h1>
   <hr />
   <h2>Add a new Specialty</h2>
   <form action='/specialties/details' method='post'>
     <div class="form-group">
       <label for='SpecialtyName'>Specialty</label>
-      <input id='SpecialtyName' name='SpecialtyName' type='text'>
+      <input class="form-control" id='SpecialtyName' name='SpecialtyName' type='text'>
     </div>
     <button type='submit' class='btn btn-danger'>Add Specialty</button>
   </form>
-  <a href='/stylists'><button class='btn btn-info'>View Stylists</button></a>
-  <a href='/'><button class='btn btn-success'>Back Home</button></a>
 </div>
